@@ -753,18 +753,22 @@
 								"command": "usermod -a -G foundry ec2-user"
 							},
 							"H_CW_Logs_Retention": {
-								"env": { "AWS_REGION": { "Ref": "AWS::Region" }},
-								"command": "aws --region $AWS_REGION logs put-retention-policy --log-group-name Foundry-SSL-Logs --retention-in-days 14"
+								"env": {
+									"AWS_REGION": {
+										"Ref": "AWS::Region"
+									}
+								},
+								"command": "aws --region $AWS_REGION logs put-retention-policy --log-group-name Foundry-SSL-Logs --retention-in-days 16"
 							}
 						}
 					}
 				}
 			},
 			"CreationPolicy": {
-                "ResourceSignal": {
-                    "Timeout": "PT25M"
-                }
-            },
+				"ResourceSignal": {
+					"Timeout": "PT25M"
+				}
+			},
 			"Properties": {
 				"KeyName": {
 					"Ref": "InstanceKey"
@@ -803,24 +807,24 @@
 								"aws ec2 create-tags --resources ${ROOT_VOLUME_IDS} --region $AWS_REGION --tags Key=Snapshot,Value=true\n",
 								"# Install the files and packages from the metadata\n",
 								"/opt/aws/bin/cfn-init -v ",
-								"         --stack ",
+								"\t\t\t\t --stack ",
 								{
 									"Ref": "AWS::StackName"
 								},
-								"         --resource FoundryServer ",
-								"         --region ",
+								"\t\t\t\t --resource FoundryServer ",
+								"\t\t\t\t --region ",
 								{
 									"Ref": "AWS::Region"
 								},
 								"\n",
 								"# Signal the status from cfn-init\n",
 								"/opt/aws/bin/cfn-signal -e $? ",
-								"         --stack ",
+								"\t\t\t\t --stack ",
 								{
 									"Ref": "AWS::StackName"
 								},
-								"         --resource FoundryServer ",
-								"         --region ",
+								"\t\t\t\t --resource FoundryServer ",
+								"\t\t\t\t --region ",
 								{
 									"Ref": "AWS::Region"
 								}
