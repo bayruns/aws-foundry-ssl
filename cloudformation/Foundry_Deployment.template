@@ -732,10 +732,10 @@
 							"A_Start_CW_Logger": {
 								"command": "systemctl start awslogsd"
 							},
-							"B_Install_Nodejs_14": {
-								"command": "curl --silent --location https://rpm.nodesource.com/setup_14.x | sudo bash"
+							"B_Install_Nodejs_16": {
+								"command": "curl --silent --location https://rpm.nodesource.com/setup_16.x | sudo bash"
 							},
-							"C_Install_Nodejs_14_cont": {
+							"C_Install_Nodejs_16_cont": {
 								"command": "yum install -y nodejs"
 							},
 							"D_Make_Dirs": {
