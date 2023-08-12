@@ -467,7 +467,17 @@
 						}
 					]
 				},
-				"AccessControl": "PublicRead",
+				"OwnershipControls": {
+					"Rules": [
+						{
+							"ObjectOwnership": "ObjectWriter"
+						}
+					]
+				},
+				"PublicAccessBlockConfiguration": {
+					"BlockPublicPolicy": false,
+					"RestrictPublicBuckets": false
+				},
 				"BucketName": {
 					"Ref": "S3BucketName"
 				}
